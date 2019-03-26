@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
@@ -20,6 +21,7 @@ import java.util.Set;
  * @description
  * @date 2019/3/26
  **/
+@Service("iCategoryService")
 public class CategoryServiceImpl implements ICategoryService {
 
     private Logger logger = LoggerFactory.getLogger(CategoryServiceImpl.class);
