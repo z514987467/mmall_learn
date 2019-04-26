@@ -11,6 +11,7 @@ import com.mmall.service.IProductService;
 import com.mmall.service.IUserService;
 import com.mmall.util.PropertiesUtil;
 import com.mmall.vo.ProductDetailVo;
+import net.sf.jsqlparser.schema.Server;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -130,6 +131,9 @@ public class ProductManageController {
             String targetFileName = iFileService.upload(file, path);
             String url = PropertiesUtil.getProperty("ftp.server.http.prefix") + targetFileName;
 
+            if (targetFileName == null) {
+                return ServerResponse.createByErrorMessage("上传文件失败");
+            }
             Map fileMap = Maps.newHashMap();
             fileMap.put("uri", targetFileName);
             fileMap.put("url", url);

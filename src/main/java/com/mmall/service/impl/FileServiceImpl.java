@@ -37,10 +37,13 @@ public class FileServiceImpl implements IFileService {
 
         try {
             file.transferTo(targetFile);
-            FTPUtil.uploadFile(Lists.newArrayList(targetFile));
-            targetFile.delete();
+            if(!FTPUtil.uploadFile(Lists.newArrayList(targetFile))){
+                return null;
+            }
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+            targetFile.delete();
         }
 
         return targetFile.getName();
